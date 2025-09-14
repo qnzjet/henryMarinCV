@@ -1,0 +1,207 @@
+/* ---------- Base reset (safe) ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, div, span, object, h1, p {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;           /* fixed: had '5' w/o units */
+  padding: 0;          /* fixed: had '5' w/o units */
+  vertical-align: baseline;
+}
+
+html, body {
+  background: #181818; 
+  font-family: 'Lato', helvetica, arial, sans-serif;
+  font-size: 16px; 
+  color: #222; /* Most text sits on #f3f3f3 in #cv */
+}
+
+.clear { clear: both; }
+
+/* ---------- Typography ---------- */
+p {
+  font-size: 1em;
+  line-height: 1.6;    /* slightly more readable */
+  margin-bottom: 20px;
+  color: #444;
+}
+
+#name h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+  margin-bottom: -6px;
+}
+
+#name h2 {
+  font-size: 2em;
+  margin-left: 2px;
+  font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Layout ---------- */
+#cv {
+  width: 90%;
+  max-width: 800px;
+  background: #f3f3f3;
+  margin: 30px auto;
+  padding-bottom: 10px; /* keeps last section from touching edge */
+}
+
+/* If you want this section bar, keep it; otherwise remove it entirely */
+.mainDetails {
+  padding: 25px 35px;
+  border-bottom: 2px solid #cf8a05;
+  background: #ededed;
+}
+
+#mainArea {
+  padding: 0 40px;
+}
+
+/* Headshot & header columns */
+#headshot {
+  width: 12.5%;
+  float: left;
+  margin-right: 30px;
+}
+
+#headshot img {
+  width: 100%;
+  height: auto;
+  border-radius: 50px;
+}
+
+#name { float: left; }
+
+#contactDetails { float: right; }
+
+#contactDetails ul {
+  list-style: none;
+  font-size: 0.9em;
+  margin: 2px 0 0 0;
+  padding: 0;
+}
+
+#contactDetails ul li {
+  margin-bottom: 3px;
+  color: #444;
+}
+
+#contactDetails ul li a,
+a[href^="tel"] {                /* fixed: add quotes */
+  color: #444; 
+  text-decoration: none;
+  transition: all .3s ease-in;
+}
+
+#contactDetails ul li a:hover { 
+  color: #cf8a05;
+}
+
+/* ---------- Sections ---------- */
+section {
+  border-top: 1px solid #dedede;
+  padding: 20px 0 0;
+}
+section:first-child { border-top: 0; }
+section:last-child { padding: 20px 0 10px; }
+
+.sectionTitle {
+  float: left;
+  width: 25%;
+}
+.sectionContent {
+  float: right;
+  width: 72.5%;
+}
+
+.sectionTitle h1 {
+  font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 1.5em;
+  color: #cf8a05;
+}
+
+.sectionContent h2 {
+  font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  margin-bottom: -2px;
+}
+
+.subDetails {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-bottom: 3px;
+}
+
+/* ---------- Key skills ---------- */
+.keySkills {
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+  column-count: 3;
+  column-gap: 16px;
+  font-size: 1em;
+  color: #444;
+}
+.keySkills li {                 /* fixed: was .keySkills ul li */
+  margin-bottom: 6px;
+  break-inside: avoid;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 602px) and (max-width: 800px) {
+  #headshot { display: none; }
+  .keySkills { column-count: 2; }
+}
+
+@media (max-width: 601px) {
+  #cv {
+    width: 95%;
+    margin: 10px auto;
+    min-width: 280px;
+  }
+  #headshot { display: none; }
+  #name, #contactDetails {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+  .sectionTitle, .sectionContent {
+    float: none;
+    width: 100%;
+  }
+  .sectionTitle {
+    margin-left: 0;            /* fixed: was -2px */
+    font-size: 1.25em;
+  }
+  .keySkills { column-count: 2; }
+}
+
+/* ---------- Animations (actually defined now) ---------- */
+@keyframes fade-in { 
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* 'reset' is a no-op placeholder used in the original classes */
+@keyframes reset { 
+  from { opacity: 1; } to { opacity: 1; } 
+}
+
+.instaFade {
+  animation: reset 1ms linear 0s 1 both, fade-in 1.5s ease-in 0s 1 both;
+}
+.quickFade {
+  animation: reset 1ms linear 0s 1 both, fade-in 2.5s ease-in 0s 1 both;
+}
+
+/* Optional stagger helpers */
+.delayOne   { animation-delay: 0s, .5s;  }
+.delayTwo   { animation-delay: 0s, 1s;   }
+.delayThree { animation-delay: 0s, 1.5s; }
+.delayFour  { animation-delay: 0s, 2s;   }
+.delayFive  { animation-delay: 0s, 2.5s; }
